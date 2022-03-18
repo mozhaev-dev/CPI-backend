@@ -4,18 +4,21 @@ import { SequelizeModule } from '@nestjs/sequelize';
 import { Operations } from './operations/operations.model';
 import { OperationsModule } from './operations/operations.module';
 
+const envFilePath =
+  process.env.NODE_ENV === 'development' ? '.development.env' : '.env';
+
 @Module({
   controllers: [],
   providers: [],
   imports: [
-    ConfigModule.forRoot({ envFilePath: `.${process.env.NODE_ENV}.env` }),
+    ConfigModule.forRoot({ envFilePath }),
     SequelizeModule.forRoot({
       dialect: 'postgres',
-      host: process.env.POSTGRES_HOST,
-      port: Number(process.env.POSTGRES_PORT),
-      username: process.env.POSTGRES_USER,
-      password: process.env.POSTGRES_PASSWORD,
-      database: process.env.POSTGRES_DB,
+      host: process.env.POSTGRESQL_DBHOST,
+      port: Number(process.env.POSTGRESQL_DBPORT),
+      username: process.env.POSTGRESQL_DBUSER,
+      password: process.env.POSTGRESQL_DBPASSWORD,
+      database: process.env.POSTGRESQL_DBNAME,
       models: [Operations],
       autoLoadModels: true,
     }),
