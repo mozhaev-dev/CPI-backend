@@ -9,8 +9,6 @@ export class OperationsController {
   @Post()
   create(@Body() data: CreateOperationDto[]) {
     try {
-      console.log(111111, data);
-
       return this.operationsService.create(data);
     } catch (e) {
       console.log(e);

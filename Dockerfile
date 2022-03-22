@@ -11,6 +11,8 @@ RUN npm install --only=development
 
 COPY . .
 
+EXPOSE 7001
+
 RUN npm run build
 
 CMD ["npm", "run", "start:dev"]
@@ -29,6 +31,8 @@ RUN npm install --only=production
 COPY . .
 
 COPY --from=development /usr/src/app/dist ./dist
+
+EXPOSE 7001
 
 RUN npm run build
 

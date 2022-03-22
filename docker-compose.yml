@@ -1,4 +1,4 @@
-version: '3.8'
+version: '2.4'
 
 services:
   dev:
@@ -10,8 +10,8 @@ services:
       dockerfile: ./Dockerfile
     command: npm run start:dev
     ports:
-      - 7001:7001
-      - 9229:9229
+      - '7001:7001'
+      - '9229:9229'
     networks:
       - nestjs-network
     volumes:
@@ -30,7 +30,7 @@ services:
       dockerfile: ./Dockerfile
     command: npm run start:prod
     ports:
-      - 7001:7001
+      - '7001:7001'
     networks:
       - nestjs-network
     volumes:
