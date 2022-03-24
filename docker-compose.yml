@@ -11,7 +11,6 @@ services:
     command: npm run start:dev
     ports:
       - '7001:7001'
-      - '9229:9229'
     networks:
       - nestjs-network
     volumes:
@@ -28,7 +27,7 @@ services:
       context: .
       target: production
       dockerfile: ./Dockerfile
-    command: npm run start
+    command: npm run start:prod
     ports:
       - '7001:7001'
     networks:
