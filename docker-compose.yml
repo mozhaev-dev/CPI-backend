@@ -20,6 +20,13 @@ services:
       - 'host.docker.internal:host-gateway'
     restart: unless-stopped
 
+  build:
+    image: api-dev
+    command: npm run build && exit
+    volumes:
+      - .:/usr/src/app
+      - /usr/src/app/node_modules
+
   prod:
     container_name: api_prod
     image: api-prod

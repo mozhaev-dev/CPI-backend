@@ -10,9 +10,9 @@ POSTGRESQL_DBNAME=cpi
 Notice: put "host.docker.internal" in POSTGRESQL_DBHOST, if you want to connect to localhost.
 
 Build for production:
-1. Run
-  docker-compose build
-2. Run
-  docker-compose up dev 
-3. After building, stop container and run
+1. Build dev container, you should do it once.
+  docker-compose build dev
+2. Run build, you have to do it every time you pull new source code version.
+  docker-compose run build 
+3. After building, you can run prod server.
   docker-compose up prod
