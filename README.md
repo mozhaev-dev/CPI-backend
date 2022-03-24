@@ -15,6 +15,6 @@ or
 docker-compose build prod
 
 Run project:
-docker-compose run dev
+docker-compose up dev
 or
-docker-compose run prod
+docker-compose up prod

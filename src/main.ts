@@ -8,7 +8,7 @@ async function bootstrap() {
 
   app.enableCors();
   await app.listen(port, () =>
-    console.log(`Server is runing, env: ${process.env.NODE_ENV}`),
+    console.log(`Server is runing, env: ${process.env.NODE_ENV}!`),
   );
 }
 bootstrap();
