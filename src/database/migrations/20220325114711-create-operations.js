@@ -43,7 +43,7 @@ module.exports = {
       });
 
       await queryInterface.addConstraint('operations', {
-        fields: ['date', 'name', 'location'],
+        fields: ['id', 'date', 'name', 'location'],
         type: 'primary key',
         name: 'operations_pk'
       });
