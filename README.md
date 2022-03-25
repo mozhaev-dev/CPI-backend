@@ -16,3 +16,10 @@ Build for production:
   docker-compose run build 
 3. After building, you can run prod server.
   docker-compose up prod
+4. If you need - run migrations:
+  docker-compose up -d dev 
+  docker-compose exec dev sh
+  npx sequelize-cli db:migrate
+  exit
+
+  
