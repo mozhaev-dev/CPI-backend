@@ -10,18 +10,16 @@ POSTGRESQL_DBNAME=cpi
 Notice: put "host.docker.internal" in POSTGRESQL_DBHOST, if you want to connect to localhost.
 
 Build for production:
+
 1. Build dev container, you should do it once.
-  docker-compose build dev
+   docker-compose build dev
 2. Run build, you have to do it every time you pull new source code version.
-  docker-compose run build 
+   docker-compose run build
 3. After building, you can run prod server.
-  docker-compose up prod
+   docker-compose up prod
 
-If you need - run migrations:
- docker-compose up -d dev 
- docker-compose exec dev sh
-  npx sequelize-cli db:migrate - run migrations
-  npx sequelize-cli db:migrate:undo - undo migrations
- exit
-
-  
+If you need - run db scripts:
+docker-compose up -d dev
+docker-compose exec dev sh
+node dist/dbScripts/run.js
+exit
