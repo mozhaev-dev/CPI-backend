@@ -1,4 +1,4 @@
-import { Body, Controller, Get, Post } from '@nestjs/common';
+import { Body, Controller, Get, Post, Header } from '@nestjs/common';
 import { CreateOperationDto } from './dto/createOperation.dto';
 import { OperationsService } from './operations.service';
 
@@ -7,6 +7,11 @@ export class OperationsController {
   constructor(private operationsService: OperationsService) {}
 
   @Post()
+  @Header(
+    'access-control-allow-headers',
+    'origin, x-requested-with, content-type',
+  )
+  @Header('access-control-allow-methods', 'PUT, GET, POST, DELETE, OPTIONS')
   create(@Body() data: CreateOperationDto[]) {
     try {
       return this.operationsService.create(data);
@@ -16,6 +21,11 @@ export class OperationsController {
   }
 
   @Get()
+  @Header(
+    'access-control-allow-headers',
+    'origin, x-requested-with, content-type',
+  )
+  @Header('access-control-allow-methods', 'PUT, GET, POST, DELETE, OPTIONS')
   getAll() {
     return this.operationsService.getAll();
   }
