@@ -44,7 +44,7 @@ services:
       - /usr/src/app/node_modules
     extra_hosts:
       - 'host.docker.internal:host-gateway'
-    restart: unless-stopped
+    restart: always
 
 networks:
   nestjs-network:

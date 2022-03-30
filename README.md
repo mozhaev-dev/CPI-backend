@@ -16,7 +16,7 @@ Build for production:
 2. Run build, you have to do it every time you pull new source code version.
    docker-compose run build
 3. After building, you can run prod server.
-   docker-compose up prod
+   docker-compose up -d prod
 
 If you need - run db scripts:
 docker-compose up -d dev
