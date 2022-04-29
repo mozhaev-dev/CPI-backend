@@ -28,10 +28,4 @@ export class Operations extends Model<Model> {
   @AllowNull(false)
   @Column({ type: DataType.DECIMAL })
   amount: number;
-
-  @Column({ type: DataType.STRING })
-  wallet: string;
-
-  // category_id: number;
-  // currency_id: number;
 }

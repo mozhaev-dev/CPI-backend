@@ -3,9 +3,9 @@ export class CreateOperationDto {
 
   name: string;
 
-  amount: number;
-
-  wallet: string;
+  location: string;
 
   quantity: number;
+
+  amount: number;
 }

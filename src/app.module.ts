@@ -20,7 +20,7 @@ const envFilePath =
       password: process.env.POSTGRESQL_DBPASSWORD,
       database: process.env.POSTGRESQL_DBNAME,
       models: [Operations],
-      autoLoadModels: true,
+      autoLoadModels: false,
     }),
     OperationsModule,
   ],
