@@ -1,24 +1,28 @@
 'use strict';
 
-// import { DataTypes } from 'sequelize';
-
 module.exports = {
   async up(queryInterface, sequelize) {
     const { DataTypes } = sequelize;
 
     await queryInterface.createTable('locations', {
       id: {
-        type: DataTypes.STRING,
+        type: DataTypes.INTEGER,
         allowNull: false,
+        autoIncrement: true,
         primaryKey: true,
+      },
+      placeId: {
+        type: DataTypes.STRING,
+      },
+      name: {
+        type: DataTypes.TEXT,
+        allowNull: false,
       },
       lat: {
         type: DataTypes.FLOAT,
-        allowNull: false,
       },
       long: {
         type: DataTypes.FLOAT,
-        allowNull: false,
       },
       raw: {
         type: DataTypes.JSONB,
@@ -39,14 +43,11 @@ module.exports = {
         type: DataTypes.TEXT,
         allowNull: false,
       },
-      location: {
-        type: DataTypes.TEXT,
-        allowNull: false,
-      },
+
       locationId: {
-        type: DataTypes.STRING,
+        type: DataTypes.INTEGER,
         references: { model: 'locations', key: 'id' },
-        onDelete: 'set null',
+        onDelete: 'cascade',
         onUpdate: 'cascade',
       },
       quantity: {
@@ -69,7 +70,7 @@ module.exports = {
 
     await queryInterface.addConstraint('operations', {
       type: 'PRIMARY KEY',
-      fields: ['id', 'date', 'name', 'location'],
+      fields: ['id', 'date', 'name', 'locationId'],
       name: 'operations_pk',
     });
   },

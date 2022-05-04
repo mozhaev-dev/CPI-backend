@@ -1,7 +1,7 @@
-import dotenv from 'dotenv';
+const dotenv = require('dotenv');
 
 dotenv.config();
-export default {
+module.exports = {
   dialect: 'postgres',
   host: process.env.POSTGRESQL_DBHOST,
   port: 5432,

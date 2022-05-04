@@ -1,7 +1,11 @@
 import { Module } from '@nestjs/common';
 import { ConfigModule } from '@nestjs/config';
 import { SequelizeModule } from '@nestjs/sequelize';
+
 import { Operations } from './operations/operations.model';
+import { Locations } from './locations/locations.model';
+
+import { LocationsModule } from './locations/locations.module';
 import { OperationsModule } from './operations/operations.module';
 
 const envFilePath =
@@ -19,10 +23,11 @@ const envFilePath =
       username: process.env.POSTGRESQL_DBUSER,
       password: process.env.POSTGRESQL_DBPASSWORD,
       database: process.env.POSTGRESQL_DBNAME,
-      models: [Operations],
+      models: [Locations, Operations],
       autoLoadModels: false,
     }),
     OperationsModule,
+    LocationsModule,
   ],
 })
 export class AppModule {}
