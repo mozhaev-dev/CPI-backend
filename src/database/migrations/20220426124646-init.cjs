@@ -73,10 +73,39 @@ module.exports = {
       fields: ['id', 'date', 'name', 'locationId'],
       name: 'operations_pk',
     });
+
+    await queryInterface.createTable('locationsEnrichmentTasks', {
+      id: {
+        type: DataTypes.STRING,
+        allowNull: false,
+        primaryKey: true,
+      },
+      locationId: {
+        type: DataTypes.INTEGER,
+        allowNull: false,
+        references: { model: 'locations', key: 'id' },
+        onDelete: 'cascade',
+        onUpdate: 'cascade',
+      },
+      status: {
+        type: DataTypes.INTEGER,
+        allowNull: false,
+        defaultValue: 0,
+      },
+      createdAt: {
+        type: DataTypes.TIME,
+        allowNull: false,
+      },
+      updatedAt: {
+        type: DataTypes.TIME,
+        allowNull: false,
+      },
+    });
   },
 
   async down(queryInterface, Sequelize) {
     await queryInterface.dropTable('operations');
+    await queryInterface.dropTable('locationsEnrichmentTasks');
     await queryInterface.dropTable('locations');
   },
 };

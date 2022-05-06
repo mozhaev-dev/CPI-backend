@@ -7,6 +7,10 @@ POSTGRESQL_DBUSER=postgres
 POSTGRESQL_DBPASSWORD=3442
 POSTGRESQL_DBNAME=cpi
 
+DATA_FOR_SEO_API_URL="https://api.dataforseo.com/v3/serp/"
+DATA_FOR_SEO_API_LOGIN="some@email.com"
+DATA_FOR_SEO_API_PASSWORD="password"
+
 Notice: put "host.docker.internal" in POSTGRESQL_DBHOST, if you want to connect to localhost.
 
 Build for production:

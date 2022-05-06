@@ -5,9 +5,11 @@ import {
   Table,
   AllowNull,
   HasMany,
+  HasOne,
 } from 'sequelize-typescript';
 
 import { Operations } from 'src/operations/operations.model';
+import { LocationsEnrichmentTasks } from 'src/locationsEnrichment/locationsEnrichmentTasks.model';
 
 @Table({
   tableName: 'locations',
@@ -32,4 +34,7 @@ export class Locations extends Model<Model> {
 
   @HasMany(() => Operations)
   operations: Operations;
+
+  @HasOne(() => LocationsEnrichmentTasks)
+  locationsEnrichmentTasks: LocationsEnrichmentTasks;
 }
