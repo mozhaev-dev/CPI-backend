@@ -22,6 +22,7 @@ Update and Build for production.
    `git pull`
 
 3. Build and run dev container:
+   `docker-compose build`
    `docker-compose up -d dev`
 
 4. Run dev container's shell:
