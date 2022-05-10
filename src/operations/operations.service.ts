@@ -4,6 +4,7 @@ import { Operations } from './operations.model';
 import { LocationsService } from 'src/locations/locations.service';
 
 import { CreateOperationDto } from './dto/createOperation.dto';
+import { Locations } from 'src/locations/locations.model';
 
 @Injectable()
 export class OperationsService {
@@ -47,7 +48,9 @@ export class OperationsService {
   }
 
   async getAll() {
-    return this.operationsModel.findAll();
+    return this.operationsModel.findAll({ include: [{
+     model: Locations
+   }]});
   }
 
   async getOne(id: number) {
