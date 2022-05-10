@@ -1,4 +1,4 @@
-Create file .development.env for dev, or .env for prod environment.
+Create file .development.env for development, or .env for production environment.
 Example:
 
 POSTGRESQL_DBHOST="host.docker.internal"
@@ -13,17 +13,31 @@ DATA_FOR_SEO_API_PASSWORD="password"
 
 Notice: put "host.docker.internal" in POSTGRESQL_DBHOST, if you want to connect to localhost.
 
-Build for production:
+Update and Build for production.
 
-1. Build dev container, you should do it once.
-   docker-compose build dev
-2. Run build, you have to do it every time you pull new source code version.
-   docker-compose run build
-3. After building, you can run prod server.
-   docker-compose up -d prod
+1. If you have allready runing containers, stop and delete it:
+   `docker-compose down`
 
-If you need - run migrations:
-docker-compose up -d dev
-docker-compose exec dev sh
-npx sequelize-cli db:migrate
-exit
+2. Pull code from the repository:
+   `git pull`
+
+3. Build and run dev container:
+   `docker-compose up -d dev`
+
+4. Run dev container's shell:
+   `docker-compose exec dev sh`
+
+5. Build an application:
+   `npm run build`
+
+6. Run migrations:
+   `npx sequelize-cli db:migrate`
+
+7. Exit from dev container's shell:
+   `exit`
+
+8. Stop dev container:
+   `docker-compose stop dev`
+
+9. Run prod server:
+   `docker-compose up -d prod`
