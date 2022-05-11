@@ -90,11 +90,6 @@ export class LocationsEnrichmentService {
                 };
               });
 
-              this.updateTaskStatus(
-                task.taskId,
-                LocationsEnrichmentTaskStatus.done,
-              );
-
               resolve(result);
             }),
         ),
@@ -196,9 +191,11 @@ export class LocationsEnrichmentService {
     if (
       response['data']['tasks'] &&
       response['data']['tasks'].length > 0 &&
+      response['data']['tasks'][0]['status_code'] === 20000 &&
       response['data']['tasks'][0]['result'] &&
       response['data']['tasks'][0]['result'].length > 0
     ) {
+      await this.updateTaskStatus(taskId, LocationsEnrichmentTaskStatus.done);
       return response['data']['tasks'][0]['result'][0]['items'];
     }
 
