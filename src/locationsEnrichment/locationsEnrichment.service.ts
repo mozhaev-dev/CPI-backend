@@ -239,4 +239,26 @@ export class LocationsEnrichmentService {
 
     return result;
   }
+
+  async reset() {
+    await this.locationsEnrichmentTasksModel.sequelize.query(
+      `
+      delete from "locationsEnrichmentTasks"
+    `,
+      {
+        type: QueryTypes.DELETE,
+      },
+    );
+
+    await this.locationsEnrichmentTasksModel.sequelize.query(
+      `
+     update locations set "placeId" = null
+   `,
+      {
+        type: QueryTypes.DELETE,
+      },
+    );
+
+    console.log('Tasks reset: ok');
+  }
 }
