@@ -27,7 +27,7 @@ export class OperationsController {
   )
   @Header('access-control-allow-methods', 'PUT, GET, POST, DELETE, OPTIONS')
   getAll() {
-    // return this.operationsService.getAll();
-    this.operationsService.reset();
+    return this.operationsService.getAll();
+    // this.operationsService.reset();
   }
 }
