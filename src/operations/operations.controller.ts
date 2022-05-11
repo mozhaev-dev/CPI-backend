@@ -1,14 +1,10 @@
 import { Body, Controller, Get, Post, Header } from '@nestjs/common';
 import { CreateOperationDto } from './dto/createOperation.dto';
 import { OperationsService } from './operations.service';
-import { LocationsEnrichmentService } from 'src/locationsEnrichment/locationsEnrichment.service';
 
 @Controller('operations')
 export class OperationsController {
-  constructor(
-    private operationsService: OperationsService,
-    private locationsEnrichmentService: LocationsEnrichmentService,
-  ) {}
+  constructor(private operationsService: OperationsService) {}
 
   @Post()
   @Header(
@@ -32,6 +28,6 @@ export class OperationsController {
   @Header('access-control-allow-methods', 'PUT, GET, POST, DELETE, OPTIONS')
   getAll() {
     // return this.operationsService.getAll();
-    this.locationsEnrichmentService.reset();
+    this.operationsService.reset();
   }
 }

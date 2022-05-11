@@ -2,6 +2,7 @@ import { Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/sequelize';
 import { Operations } from './operations.model';
 import { LocationsService } from 'src/locations/locations.service';
+import { QueryTypes } from 'sequelize';
 
 import { CreateOperationDto } from './dto/createOperation.dto';
 import { Locations } from 'src/locations/locations.model';
@@ -48,12 +49,38 @@ export class OperationsService {
   }
 
   async getAll() {
-    return this.operationsModel.findAll({ include: [{
-     model: Locations
-   }]});
+    return this.operationsModel.findAll({
+      include: [
+        {
+          model: Locations,
+        },
+      ],
+    });
   }
 
   async getOne(id: number) {
     return this.operationsModel.findOne({ where: { id } });
+  }
+
+  async reset() {
+    await this.operationsModel.sequelize.query(
+      `
+     delete from "locationsEnrichmentTasks"
+   `,
+      {
+        type: QueryTypes.DELETE,
+      },
+    );
+
+    await this.operationsModel.sequelize.query(
+      `
+    update locations set "placeId" = null
+  `,
+      {
+        type: QueryTypes.DELETE,
+      },
+    );
+
+    console.log('Tasks reset: ok');
   }
 }
